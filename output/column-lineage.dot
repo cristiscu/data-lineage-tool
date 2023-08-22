@@ -1,0 +1,20 @@
+digraph structs {
+	rankdir=LR;
+	_START_ [label=""]
+	T1 [shape=Mrecord label="<T1> T1|<CONTENT> CONTENT"];
+	T6 [shape=Mrecord label="<T6> T6|<CONTENT> CONTENT"];
+	T2 [shape=Mrecord label="<T2> T2|<ID> ID|<NAME> NAME"];
+	S1 [shape=Mrecord label="<S1> S1"];
+	T3 [shape=Mrecord label="<T3> T3|<CUSTOMER_INFO> CUSTOMER_INFO"];
+	T4 [shape=Mrecord label="<T4> T4|<ID> ID|<NAME> NAME"];
+	T7 [shape=Mrecord label="<T7> T7|<CONTENT> CONTENT"];
+	_START_ -> T1:CONTENT [tooltip="insert into T1(content) select parse_json('{'name': 'A', 'id':1}');"];
+	_START_ -> S1 [tooltip="copy into @S1 from T1;"];
+	_START_ -> T3:CUSTOMER_INFO [tooltip="copy into T3 from @S1;"];
+	T1:CONTENT -> T6:CONTENT [tooltip="insert into T6 select * from T1;"];
+	T1:CONTENT -> T2:ID [tooltip="create table T2 as select content:'name' as name, content:'id' as id from T1;"];
+	T1:CONTENT -> T2:NAME [tooltip="create table T2 as select content:'name' as name, content:'id' as id from T1;"];
+	T1:CONTENT -> T4:ID [tooltip="insert into T4(name, id) select content:'name', content:'id' from T1;"];
+	T1:CONTENT -> T4:NAME [tooltip="insert into T4(name, id) select content:'name', content:'id' from T1;"];
+	T6:CONTENT -> T7:CONTENT [tooltip="create table T7 as select * from T6;"];
+}

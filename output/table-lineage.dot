@@ -1,0 +1,18 @@
+digraph structs {
+	rankdir=LR;
+	_START_ [label=""]
+	T1 [shape=Mrecord label="T1"];
+	T6 [shape=Mrecord label="T6"];
+	T2 [shape=Mrecord label="T2"];
+	S1 [shape=Mrecord label="S1"];
+	T3 [shape=Mrecord label="T3"];
+	T4 [shape=Mrecord label="T4"];
+	T7 [shape=Mrecord label="T7"];
+	_START_ -> T1 [tooltip=""];
+	_START_ -> S1 [tooltip="copy into @S1 from T1;"];
+	_START_ -> T3 [tooltip=""];
+	T1 -> T6 [tooltip=""];
+	T1 -> T2 [tooltip=""];
+	T1 -> T4 [tooltip=""];
+	T6 -> T7 [tooltip=""];
+}
