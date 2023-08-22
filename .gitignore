@@ -52,3 +52,4 @@ Thumbs.db
 build/
 *.spec
 profiles_db.conf
+venv/
