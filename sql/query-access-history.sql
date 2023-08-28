@@ -12,7 +12,7 @@ select qh.query_text,
       lateral flatten(input => om.value: "columns", outer => true) col,
       lateral flatten(input => col.value:directSources, outer => true) src,
    lateral flatten(input => direct_objects_accessed, outer => true) obj
-where ifnull(src.value:objectName::string, '') like 'TEST_DB%'
-   or ifnull(om.value:objectName::string, '') like 'TEST_DB%'
-   or ifnull(obj.value:objectName::string, '') like 'TEST_DB%'
+where ifnull(src.value:objectName::string, '') like '{{database}}%'
+   or ifnull(om.value:objectName::string, '') like '{{database}}%'
+   or ifnull(obj.value:objectName::string, '') like '{{database}}%'
 order by ah.query_start_time;
